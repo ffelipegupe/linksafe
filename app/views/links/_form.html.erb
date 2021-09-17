@@ -1,0 +1,36 @@
+<%= form_with(model: link) do |form| %>
+  <% if link.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(link.errors.count, "error") %> prohibited this link from being saved:</h2>
+
+      <ul>
+        <% link.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class:"form-label" %>
+    <%= form.text_field :title, class:"form-control", placeholder:"Add a personalized title for your link" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class:"form-label" %>
+    <%= form.text_field :description, class:"form-control", placeholder:"Add a description for your link" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :url, class:"form-label" %>
+    <%= form.text_field :url, class:"form-control", placeholder:"Add the link's URL" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.text_field :user_id, class:"form-control", value: current_user.id, id: :friend_user_id, type: :hidden %>
+  </div>
+  
+  <div class="actions">
+    <%= form.submit class:"btn btn-secondary" %>
+  </div>
+<% end %>

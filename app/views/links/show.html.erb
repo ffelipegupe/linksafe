@@ -1,0 +1,15 @@
+<div style="margin-top:55px; padding-top:55px;" class="container-fluid text-sm-left p-5 text-black "> <!-- bg-light is background color & p-5 is padding -->
+    <h1 class="display-2">
+      <%= @link.title %>
+    </h1>
+    <p class="lead">
+      <%= @link.description %> </p>
+      <p class="lead"><%= link_to @link.url, @link.url %>
+       
+      </p>
+      <br/>
+
+    <%= link_to 'Edit', edit_link_path(@link), class:"btn btn-secondary" %> 
+    <%= link_to 'Back', links_path, class:"btn btn-secondary" %>
+</div>
+

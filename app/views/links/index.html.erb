@@ -1,0 +1,77 @@
+
+<% if user_signed_in? %>
+<div class="container mt-3 mb-3">
+  <div class="row justify-content-start">
+    <div class="col-md-auto">
+      <%= link_to 'Add Link', new_link_path, class:"btn btn-outline-dark" %>
+    </div>
+  </div>
+</div>
+<div class="container">
+<div class="accordion" id="accordionParent">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Super important links
+        
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionParent">
+      <div class="accordion-body">  
+        <div class="row row-cols-1 row-cols-md-4 ms-1">
+        <% @links.each do |link| %>
+        <% if link.user == current_user %>
+        <div class="col mb-4">          
+          <div class="card h-100" style="max-width: 18rem;">
+            <div class="card-body">
+          
+          <h5 class="card-title"><%= link_to link.title, link, class:"link-dark" %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= link.created_at %></h6>
+          <p class="card-text"><%= link.description %></p>
+          </div>
+          <div class="card-footer">
+          <%= link_to 'Visit link', link.url, class:"btn btn-outline-info btn-sm" %>
+          <%= link_to 'Edit', edit_link_path(link), class:"btn btn-outline-info btn-sm" %>
+          <%= link_to 'Delete', link, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger btn-sm" %>
+          
+        </div>
+      </div> 
+    </div>
+    <% end %>
+    <% end %> 
+  </div>
+</div>
+</div>
+</div>
+</div>
+<% else %>
+
+<div class="container mt-4  pt-4">
+<div class="card mx-auto rounded border border-success" style="width: 20rem;">
+  <h5 class="card-header text-center">Welcome</h5>
+  <div class="card-body">
+    <h5 class="card-title">This is Link Safe!</h5>
+    <p class="card-text">Link Safe is the place where you store and organize all your links.</p> 
+    <p class="card-text">Now is time to always know where are your links and never loose them!</p>
+    <p class="card-text fw-bold">It's easy: </p>
+      <ul>
+        <li>Copy the link you want to save</li>
+        <li>Add the link to a category</li> 
+        <li>Give it a title and a little description</li>
+        <li>And you're done!</li>
+      </ul>
+    </p>
+    </div>
+    <div class="card-footer text-center">
+    <%= link_to "Sign in", new_user_session_path, class:"btn btn-primary" %>
+    <%= link_to "Sign up", new_user_registration_path, class:"btn btn-primary" %>
+  </div>
+   </div> 
+  
+</div>
+</div>
+<% end %>
+
+<br>
+
+
