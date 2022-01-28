@@ -2,4 +2,4 @@
 
 Keep your links safe in one place.
 
-Visit: 
+Visit: https://linksafe.herokuapp.com/
